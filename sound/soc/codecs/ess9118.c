@@ -1023,14 +1023,12 @@ err:
 static unsigned int es9118_codec_read(struct snd_soc_codec *codec,
 		unsigned int reg)
 {
-	/* struct es9118_priv *priv = codec->control_data; */
 	return 0;
 }
 
 static int es9118_codec_write(struct snd_soc_codec *codec, unsigned int reg,
 		unsigned int value)
 {
-	/* struct es9118_priv *priv = codec->control_data; */
 	return 0;
 }
 
@@ -1049,16 +1047,12 @@ static int es9118_pcm_hw_params(struct snd_pcm_substream *substream,
 		struct snd_pcm_hw_params *params,
 		struct snd_soc_dai *codec_dai)
 {
-	/* struct snd_soc_codec *codec = codec_dai->codec; */
-	/* struct es9118_priv *priv = codec->control_data; */
 
 	return 0;
 }
 
 static int es9118_mute(struct snd_soc_dai *dai, int mute)
 {
-	/* struct snd_soc_codec *codec = codec_dai->codec; */
-	/* struct es9118_priv *priv = codec->control_data; */
 
 	return 0;
 
@@ -1067,8 +1061,6 @@ static int es9118_mute(struct snd_soc_dai *dai, int mute)
 static int es9118_set_clkdiv(struct snd_soc_dai *codec_dai,
 				int div_id, int div)
 {
-	/* struct snd_soc_codec *codec = codec_dai->codec; */
-	/* struct es9118_priv *priv = codec->control_data; */
 
 	return 0;
 }
@@ -1076,8 +1068,6 @@ static int es9118_set_clkdiv(struct snd_soc_dai *codec_dai,
 static int es9118_set_dai_sysclk(struct snd_soc_dai *codec_dai,
 		int clk_id, unsigned int freq, int dir)
 {
-	/* struct snd_soc_codec *codec = codec_dai->codec; */
-	/* struct es9118_priv *priv = codec->control_data; */
 
 	return 0;
 }
@@ -1086,8 +1076,6 @@ static int es9118_set_dai_sysclk(struct snd_soc_dai *codec_dai,
 static int es9118_set_dai_fmt(struct snd_soc_dai *codec_dai,
 				unsigned int fmt)
 {
-	/* struct snd_soc_codec *codec = codec_dai->codec; */
-	/* struct es9118_priv *priv = codec->control_data; */
 
 	return 0;
 }
@@ -1096,8 +1084,6 @@ static int es9118_set_fll(struct snd_soc_dai *codec_dai,
 		int pll_id, int source, unsigned int freq_in,
 		unsigned int freq_out)
 {
-	/* struct snd_soc_codec *codec = codec_dai->codec; */
-	/* struct es9118_priv *priv = codec->control_data; */
 
 	return 0;
 }
@@ -1105,8 +1091,6 @@ static int es9118_set_fll(struct snd_soc_dai *codec_dai,
 static int es9118_pcm_trigger(struct snd_pcm_substream *substream,
 		int cmd, struct snd_soc_dai *codec_dai)
 {
-	/* struct snd_soc_codec *codec = codec_dai->codec; */
-	/* struct es9118_priv *priv = codec->control_data; */
 
 	return 0;
 }
@@ -1205,15 +1189,6 @@ static int es9118_check(void)
 	pr_info("%s: switch es9118 cycle on\n", __func__);
 	es9118_enable_gpio(es9118_ctrl->cycle_gpio, 1);
 	msleep(20);
-
-/*
-	reg_num = sizeof(init_reg_es9118)/sizeof(struct es9118_reg);
-	for (i = 0; i < reg_num; i++) {
-		es9118_write_reg(g_es9118_priv->i2c_client,
-				init_reg_es9118[i].num,
-				init_reg_es9118[i].value);
-	}
-*/
 
 	ret = es9118_read_reg(g_es9118_priv->i2c_client,
 				MASTER_MODE_CONTROL);
