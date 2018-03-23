@@ -24,6 +24,7 @@
 #include <linux/init.h>
 #include <linux/list.h>
 #include <linux/i2c.h>
+#include <linux/irq.h>
 #include <linux/jiffies.h>
 #include <linux/uaccess.h>
 #include <linux/delay.h>
@@ -31,14 +32,11 @@
 #include <linux/io.h>
 #include <linux/platform_device.h>
 #include <linux/gpio.h>
+#include <linux/of_gpio.h>
 #include <linux/miscdevice.h>
 #include <linux/spinlock.h>
-#include <mach/gpiomux.h>
-#include <linux/gpio.h>
-#include <linux/irq.h>
-#include <mach/board.h>
+#include <asm/siginfo.h>
 #include <linux/clk.h>
-#include <linux/of_gpio.h>
 
 #define MAX_BUFFER_SIZE	512
 
@@ -158,14 +156,16 @@ static int nfc_parse_dt(struct device *dev, struct pn547_dev *pdata)
 	int r = 0;
 	struct device_node *np = dev->of_node;
 
+/*
 	r = of_property_read_u32(np, "reg", &pdata->reg);
 	if (r)
 		return -EINVAL;
+*/
 
 	pdata->ven_gpio = of_get_named_gpio(np, "qcom,nxp-ven", 0);
 	if ((!gpio_is_valid(pdata->ven_gpio)))
 		return -EINVAL;
-	disable_ctrl = pdata->ven_gpio;
+	//disable_ctrl = pdata->ven_gpio;
 
 	pdata->irq_gpio = of_get_named_gpio(np, "qcom,nxp-irq", 0);
 	if ((!gpio_is_valid(pdata->irq_gpio)))
@@ -385,7 +385,7 @@ static const struct file_operations pn547_dev_fops = {
 static int pn547_probe(struct i2c_client *client,
 		const struct i2c_device_id *id)
 {
-	int r = 0;
+	//int r = 0;
 	int ret;
 	struct pn547_dev *pn547_dev;
 #if 0
